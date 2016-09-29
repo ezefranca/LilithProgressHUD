@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'LilithProgressHUD'
-  s.version          = '0.2'
+  s.version          = '0.201'
   s.summary          = 'A beautiful, lightweight and elegant progress hud for iOS.'
 
 # This description is used to generate tags and improve search results.
