@@ -316,6 +316,9 @@
 					52A2A3B3DD7CA581AE7FC0B272A8E2DA = {
 						LastSwiftMigration = 0800;
 					};
+					67695DE33DD447073D8F2961D5E03A1C = {
+						LastSwiftMigration = 0800;
+					};
 					B14AD46BE59007C6B56D42B72FB184E4 = {
 						DevelopmentTeam = 6J8X5V9DBG;
 						LastSwiftMigration = 0800;
@@ -412,6 +415,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_VERSION = 3.0;
 				SYMROOT = "${SRCROOT}/../build";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -576,6 +580,7 @@
 				PRODUCT_NAME = Pods_LilithProgressHUD_Tests;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -609,6 +614,7 @@
 				PRODUCT_NAME = Pods_LilithProgressHUD_Tests;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -653,6 +659,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				ONLY_ACTIVE_ARCH = YES;
 				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_VERSION = 3.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Debug;
