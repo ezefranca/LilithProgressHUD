@@ -9,36 +9,36 @@
 import UIKit
 
 /** The class for displaying an LilithProgressHUD. */
-public class LilithProgressHUD {
+open class LilithProgressHUD {
     
     /** Shared instance */
     static let sharedInstance = LilithProgressHUD()
     
     /** The main window that is used to display LilithProgressHUD */
-    private let window:UIWindow!
+    fileprivate let window:UIWindow!
     
     /** The previous window displayed */
-    private var previousWindow:UIWindow?
+    fileprivate var previousWindow:UIWindow?
     
     /** Configure default values for LilithProgressHUD */
-    private init() {
+    fileprivate init() {
         let vc = UIViewController()
         vc.view.backgroundColor = UIColor(white: 0, alpha: 0)
         vc.view.addSubview(ProgressHUD(frame: vc.view.bounds))
         
-        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        window = UIWindow(frame: UIScreen.main.bounds)
         window.windowLevel = UIWindowLevelAlert
         window.rootViewController = vc
         window.alpha = 0
         
-        previousWindow = UIWindow(frame: UIScreen.mainScreen().bounds)
-        if let window = UIApplication.sharedApplication().delegate?.window {
+        previousWindow = UIWindow(frame: UIScreen.main.bounds)
+        if let window = UIApplication.shared.delegate?.window {
             previousWindow = window
         }
     }
     
     /**The opacity for the hud. The default is 0.5. */
-    public static var opacity: CGFloat {
+    open static var opacity: CGFloat {
         get {
             return LilithProgressHUDConfig.sharedInstance.opacity
         }
@@ -48,7 +48,7 @@ public class LilithProgressHUD {
     }
     
     /** The size of the hud. The default is 70. */
-    public static var size: CGFloat {
+    open static var size: CGFloat {
         get {
             return LilithProgressHUDConfig.sharedInstance.size
         }
@@ -58,7 +58,7 @@ public class LilithProgressHUD {
     }
     
     /** The corner radius of the hud. The default is 5. */
-    public static var cornerRadius: CGFloat {
+    open static var cornerRadius: CGFloat {
         get {
             return LilithProgressHUDConfig.sharedInstance.cornerRadius
         }
@@ -68,7 +68,7 @@ public class LilithProgressHUD {
     }
     
     /** The fade in and out time of the hud. The default is 0.5 */
-    public static var fadeTime: NSTimeInterval {
+    open static var fadeTime: TimeInterval {
         get {
             return LilithProgressHUDConfig.sharedInstance.fadeTime
         }
@@ -78,8 +78,8 @@ public class LilithProgressHUD {
     }
     
     /** Shows the HUD. */
-    public class func show() {
-        guard let previousWindow = UIApplication.sharedApplication().delegate?.window else {
+    open class func show() {
+        guard let previousWindow = UIApplication.shared.delegate?.window else {
             assert(false, "Couldn't find main window.")
             return
         }
@@ -88,27 +88,27 @@ public class LilithProgressHUD {
         LilithProgressHUD.sharedInstance.window.makeKeyAndVisible()
         
         for view in LilithProgressHUD.sharedInstance.window.rootViewController!.view.subviews {
-            if view.isKindOfClass(ProgressHUD) {
+            if view.isKind(of: ProgressHUD.self) {
                 (view as! ProgressHUD).startAnimating()
             }
         }
         
-        UIView.animateWithDuration(LilithProgressHUDConfig.sharedInstance.fadeTime) {
+        UIView.animate(withDuration: LilithProgressHUDConfig.sharedInstance.fadeTime, animations: {
             LilithProgressHUD.sharedInstance.window.alpha = 1
-        }
+        }) 
     }
     
     /** Hides the HUD. */
-    public class func hide() {
-        UIView.animateWithDuration(LilithProgressHUDConfig.sharedInstance.fadeTime, animations: {
+    open class func hide() {
+        UIView.animate(withDuration: LilithProgressHUDConfig.sharedInstance.fadeTime, animations: {
             LilithProgressHUD.sharedInstance.window.alpha = 0
-            }) { (Bool) in
+            }, completion: { (Bool) in
                 LilithProgressHUD.sharedInstance.previousWindow?.makeKeyAndVisible()
-        }
+        }) 
     }
     
     /** Shows the HUD on a view. */
-    public class func show(view: UIView?) {
+    open class func show(_ view: UIView?) {
         guard let view = view else {
             assert(false, "View was nil when trying to show the hud on it.")
             return
@@ -121,14 +121,14 @@ public class LilithProgressHUD {
     }
     
     /** Hides all the huds for a view. */
-    public class func hide(view: UIView?) {
+    open class func hide(_ view: UIView?) {
         guard let view = view else {
             assert(false, "View was nil when trying to hide the hud on it.")
             return
         }
         
         for subView in view.subviews {
-            if subView.isKindOfClass(ProgressHUD) {
+            if subView.isKind(of: ProgressHUD.self) {
                 (subView as! ProgressHUD).endAnimating()
             }
         }
@@ -163,14 +163,14 @@ private class ProgressHUD: UIView {
     /** Starts animating the HUD */
     func startAnimating() {
         indicator.startAnimating()
-        UIView.animateWithDuration(LilithProgressHUDConfig.sharedInstance.fadeTime, animations: {
+        UIView.animate(withDuration: LilithProgressHUDConfig.sharedInstance.fadeTime, animations: {
             self.hudView.alpha = 1
         })
     }
     
     /** Finishes animating the HUD */
     func endAnimating() {
-        UIView.animateWithDuration(LilithProgressHUDConfig.sharedInstance.fadeTime, animations: {
+        UIView.animate(withDuration: LilithProgressHUDConfig.sharedInstance.fadeTime, animations: {
             self.hudView.alpha = 0
             }, completion: { (finished) in
                 self.removeFromSuperview()
@@ -190,7 +190,7 @@ private class LilithProgressHUDConfig {
     var cornerRadius: CGFloat = 5
     
     /** The fade in and fade out time of the hud. */
-    var fadeTime: NSTimeInterval = 0.5
+    var fadeTime: TimeInterval = 0.5
     
     /** Shared instance for LilithProgressHUD. */
     static let sharedInstance = LilithProgressHUDConfig()

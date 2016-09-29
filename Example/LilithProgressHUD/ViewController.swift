@@ -11,15 +11,11 @@ import LilithProgressHUD
 
 class ViewController: UIViewController {
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let label = UILabel(frame: view.bounds)
-        label.textAlignment = .Center
+        label.textAlignment = .center
         label.text = "🍉"
         view.addSubview(label)
         
@@ -28,24 +24,9 @@ class ViewController: UIViewController {
         LilithProgressHUD.cornerRadius = 5
         LilithProgressHUD.fadeTime = 1
         
-        //Show hud after delay
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(2 * Double(NSEC_PER_SEC)))
-        dispatch_after(delayTime, dispatch_get_main_queue()) {
-            LilithProgressHUD.show()
-        }
+        LilithProgressHUD.show()
         
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-
-        //Hide the hud after delay
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(9 * Double(NSEC_PER_SEC)))
-        dispatch_after(delayTime, dispatch_get_main_queue()) {
-            LilithProgressHUD.hide()
-        }
-        
-    }
+    }    
     
 }
 
