@@ -78,22 +78,22 @@ open class LilithProgressHUD {
     }
     
     /** The fade in and out time of the hud. The default is 0.5 */
-    open static var hudViewBackgroundColor: TimeInterval {
+    open static var hudViewBackgroundColor: UIColor {
         get {
-            return LilithProgressHUDConfig.sharedInstance.fadeTime
+            return LilithProgressHUDConfig.sharedInstance.hudViewBackgroundColor
         }
         set {
-            LilithProgressHUDConfig.sharedInstance.fadeTime = newValue
+            LilithProgressHUDConfig.sharedInstance.hudViewBackgroundColor = newValue
         }
     }
     
     /** The fade in and out time of the hud. The default is 0.5 */
-    open static var hudIndicatorColor: TimeInterval {
+    open static var hudIndicatorColor: UIColor {
         get {
-            return LilithProgressHUDConfig.sharedInstance.fadeTime
+            return LilithProgressHUDConfig.sharedInstance.indicatorColor
         }
         set {
-            LilithProgressHUDConfig.sharedInstance.fadeTime = newValue
+            LilithProgressHUDConfig.sharedInstance.indicatorColor = newValue
         }
     }
     
