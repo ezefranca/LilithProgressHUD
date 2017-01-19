@@ -77,6 +77,26 @@ open class LilithProgressHUD {
         }
     }
     
+    /** The fade in and out time of the hud. The default is 0.5 */
+    open static var hudViewBackgroundColor: TimeInterval {
+        get {
+            return LilithProgressHUDConfig.sharedInstance.fadeTime
+        }
+        set {
+            LilithProgressHUDConfig.sharedInstance.fadeTime = newValue
+        }
+    }
+    
+    /** The fade in and out time of the hud. The default is 0.5 */
+    open static var hudIndicatorColor: TimeInterval {
+        get {
+            return LilithProgressHUDConfig.sharedInstance.fadeTime
+        }
+        set {
+            LilithProgressHUDConfig.sharedInstance.fadeTime = newValue
+        }
+    }
+    
     /** Shows the HUD. */
     open class func show() {
         guard let previousWindow = UIApplication.shared.delegate?.window else {
@@ -152,10 +172,11 @@ private class ProgressHUD: UIView {
         let hudFrame = CGRect(x: 0, y: 0, width: LilithProgressHUDConfig.sharedInstance.size, height: LilithProgressHUDConfig.sharedInstance.size)
         hudView = UIView(frame: hudFrame)
         hudView.center = CGPoint(x: frame.width/2, y: frame.height/2)
-        hudView.backgroundColor = UIColor(white: 0, alpha: LilithProgressHUDConfig.sharedInstance.opacity)
+        hudView.backgroundColor = (LilithProgressHUDConfig.sharedInstance.hudViewBackgroundColor).withAlphaComponent(LilithProgressHUDConfig.sharedInstance.opacity)
         hudView.layer.cornerRadius = LilithProgressHUDConfig.sharedInstance.cornerRadius
         hudView.clipsToBounds = true
         indicator = UIActivityIndicatorView(frame: hudView.bounds)
+        indicator.color = LilithProgressHUDConfig.sharedInstance.indicatorColor
         hudView.addSubview(indicator)
         addSubview(hudView)
     }
@@ -191,6 +212,12 @@ private class LilithProgressHUDConfig {
     
     /** The fade in and fade out time of the hud. */
     var fadeTime: TimeInterval = 0.5
+    
+    /** The indicator color */
+    var indicatorColor: UIColor = (UIColor.white)
+    
+    /** The backgroundColor of the hud. */
+    var hudViewBackgroundColor: UIColor = (UIColor.black)
     
     /** Shared instance for LilithProgressHUD. */
     static let sharedInstance = LilithProgressHUDConfig()
